@@ -1,0 +1,9 @@
+# Default experiment configuration
+# Copy this file and rename it (e.g. member1_dqn.yaml) for your own experiments.
+
+seed: 42
+env: "CartPole-v1"
+agent: "random"          # replace with your agent name (e.g. dqn, ppo, a2c)
+total_steps: 50000
+eval_interval: 1000
+log_dir: "logs/default"
