@@ -140,7 +140,7 @@ class FiniteMDP:
         self.S = S
         self.A = A
         self.P = P
-        self.R = R
+        self.R = R  
         self.gamma = gamma
         self.n_actions = len(self.A)
         self.n_states = len(self.S)
