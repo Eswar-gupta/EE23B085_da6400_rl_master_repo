@@ -48,7 +48,7 @@ class FiniteMDP:
                 
                 # Reward for hover
                 r_hover = -1.0
-                if "Smoke" in label: r_hover -= 10.0 # Entering hazard additional penalty
+                if "Smoke" in label: r_hover -= 90.0 # Entering hazard additional penalty
                 self.R[s_idx, a_idx] = r_hover
                 """
                 # Hover: always -1. Description says "entering hazardous regions"
