@@ -29,8 +29,8 @@ class Agent:
                 i += 1
             self.memory_path = os.path.join(self.log_dir, f"log_{i}.npz")
 
-        self.V: np.ndarray = np.zeros(self.model.n_states)
-        self.Q: np.ndarray = np.zeros((self.model.n_states, self.model.n_actions))
+        self.V: np.ndarray = np.random.uniform(1.0, 2.0, size=self.model.n_states)
+        self.Q: np.ndarray = np.random.uniform(1.0, 2.0, size=(self.model.n_states, self.model.n_actions))
         self.save_weights()
 
     def Bellman_operator_on_V(self, V: np.ndarray) -> np.ndarray:

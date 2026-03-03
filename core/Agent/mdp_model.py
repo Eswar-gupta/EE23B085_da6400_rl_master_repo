@@ -28,11 +28,17 @@ class FiniteMDP:
         label = self.S[s_idx]
 
         # 1. Terminal State Check: Boulder or Successful delivery to Fire zone
-        # Once terminal, probability stays 1 in itself and reward is 0
-        if "Boulder" in label or ("Fire" in label and w == 1):
+        # Boulder is a failure pit (-100 per step), Fire+water is a success peak (+100 per step)
+        if "Boulder" in label:
             for a_idx in range(self.n_actions):
                 self.P[a_idx, s_idx, s_idx] = 1.0
-                self.R[s_idx, a_idx] = 0.0
+                self.R[s_idx, a_idx] = -100.0
+            return
+
+        if "Fire" in label and w == 1:
+            for a_idx in range(self.n_actions):
+                self.P[a_idx, s_idx, s_idx] = 1.0
+                self.R[s_idx, a_idx] = 0
             return
 
         is_smoke = "Smoke" in label
@@ -49,6 +55,7 @@ class FiniteMDP:
                 # Reward for hover
                 r_hover = -1.0
                 if "Smoke" in label: r_hover -= 90.0 # Entering hazard additional penalty
+                if "Lake" in label and w == 0: r_hover = 100.0 # Picking up water
                 self.R[s_idx, a_idx] = r_hover
                 """
                 # Hover: always -1. Description says "entering hazardous regions"
@@ -89,6 +96,8 @@ class FiniteMDP:
                     r_out = -100.0
                 elif "Fire" in next_label and nw == 1:
                     r_out = 100.0
+                elif "Lake" in next_label and w == 0:
+                    r_out = 100
                 else:
                     r_out = -1.0 # Per-step penalty
                     if "Smoke" in next_label: r_out -= 10.0 # Additional smoke penalty
