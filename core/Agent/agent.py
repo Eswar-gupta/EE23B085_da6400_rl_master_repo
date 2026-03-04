@@ -29,8 +29,8 @@ class Agent:
                 i += 1
             self.memory_path = os.path.join(self.log_dir, f"log_{i}.npz")
 
-        self.V: np.ndarray = np.random.uniform(1.0, 2.0, size=self.model.n_states)
-        self.Q: np.ndarray = np.random.uniform(1.0, 2.0, size=(self.model.n_states, self.model.n_actions))
+        self.V: np.ndarray = np.zeros(model.n_states)
+        self.Q: np.ndarray = np.zeros((self.model.n_states, self.model.n_actions))
         self.save_weights()
 
     def Bellman_operator_on_V(self, V: np.ndarray) -> np.ndarray:
@@ -145,7 +145,7 @@ class Agent:
         Returns:
             path: List of (x, y) grid coordinates visited.
         """
-        actions = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # N, S, E, W
+        actions = [(0, 1), (0, -1), (1, 0), (-1, 0) , (0,0)]  # N, S, E, W,Hower
 
         if water:
             start, goal, w = (0, 0), (4, 4), 1
@@ -169,6 +169,7 @@ class Agent:
             
                 if 0 <= nx < 5 and 0 <= ny < 5:
                     s_idx = nx + 5 * ny + 25 * w
+                    print("s_idx = ",s_idx," V[s_idx] = ",self.V[s_idx]," nx = ",nx," ny = ",ny)
                     if self.V[s_idx] > best_val:
                         best_val = self.V[s_idx]
                         best_pos = (nx, ny)

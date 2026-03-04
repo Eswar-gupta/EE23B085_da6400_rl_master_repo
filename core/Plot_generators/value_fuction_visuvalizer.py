@@ -68,8 +68,8 @@ def state_value_fuction_visuvalizer(
             txt_color = ('white'
                          if abs(val - (vmin + vmax) / 2) > (vmax - vmin) * 0.3
                          else '#1a1a2e')
-
-            ax.text(col, row, f'{val:.1f}', ha='center', va='center',
+            """The fhfh    fhfh    fhfh    fhhf    fhfh    fhfh    """
+            ax.text(col, row, f'{val:.3f}', ha='center', va='center',
                     fontsize=10, color=txt_color, fontweight='bold')
             ax.text(col, row + 0.38, f'({col},{y_coord}) {cell_type}',
                     ha='center', va='center',
