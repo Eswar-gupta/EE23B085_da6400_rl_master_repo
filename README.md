@@ -12,6 +12,7 @@ pip install -r requirements.txt
 # Clone and navigate to directory
 jupyter notebook acrobot_rl.ipynb
 ```
+ 
 
 ## Dependencies
 - gymnasium
