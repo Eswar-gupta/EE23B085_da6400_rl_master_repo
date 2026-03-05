@@ -139,14 +139,8 @@ start state. Explain the results along with comparing the two algorithms.[6M]
     mance of the policies after finishing learning (i.e., without any exploration). Explain
     the differences, if there exist any. [5M]
 4. Intuitively, increasing the number of bins results in better state representation, enhanc-
-
-
-Figure 1: Sample plot for return vs. episode number of an algorithm in an environment.
-
-```
 ing granularity. This can result in learning a better policy. Is this always the case?
 Are there any downsides? Explain (try 5, 15, and 20 bins). [3M]
-```
 5. The classic Acrobot-v1 setup gives a per-step reward of−1 until reaching the specified
     height, which is when the episode terminates with a reward of 0. Suppose we modify
     this reward setting to a per-step reward as given by Eq. 1, wherehis the height of the

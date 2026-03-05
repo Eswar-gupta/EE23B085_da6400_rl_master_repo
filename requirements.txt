@@ -1,2 +1,4 @@
 numpy
 matplotlib
+gym
+tqdm==4.67.3
